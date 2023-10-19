@@ -11,7 +11,7 @@ function SearchBar({ onSearch }) {
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
       <div className="container">
-        <form className="d-flex" onSubmit={handleSearch}>
+        <form className="d-flex mx-auto d-block" onSubmit={handleSearch}>
           <input
             className="form-control me-2"
             type="search"
