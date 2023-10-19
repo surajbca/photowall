@@ -1,30 +1,25 @@
 import React, { useState } from "react";
 
-function SearchBar({ onSearch, onSearchTermChange }) {
+function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault(); // Prevent the default form submission
     onSearch(searchTerm);
-  };
-
-  const handleInputChange = (e) => {
-    const term = e.target.value;
-    setSearchTerm(term);
-    onSearchTermChange(term); // Pass the search term back to the parent component
   };
 
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
       <div className="container">
-        <form className="d-flex mx-auto d-block">
+        <form className="d-flex" onSubmit={handleSearch}>
           <input
             className="form-control me-2"
             type="search"
             placeholder="Search images..."
             value={searchTerm}
-            onChange={handleInputChange}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="btn btn-outline-success" onClick={handleSearch}>
+          <button className="btn btn-outline-success" type="submit">
             Search
           </button>
         </form>

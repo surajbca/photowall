@@ -39,12 +39,11 @@ function UnsplashImageFetcher() {
             Authorization: `Client-ID ${apiKey}`,
           },
         });
-
+        console.log(Array.isArray(response.data.results));
         if (Array.isArray(response.data)) {
-          console.log(response.data);
           setImages(response.data);
         } else {
-          setImages([]); // Set images to an empty array if data is not an array
+          setImages(response.data.results); // Set images to an empty array if data is not an array
         }
 
         setLoading(false);
@@ -56,7 +55,6 @@ function UnsplashImageFetcher() {
 
     const initialFetchUrl = "https://api.unsplash.com/photos/random";
     const searchFetchUrl = "https://api.unsplash.com/search/photos";
-    console.log(searchTerm);
     if (searchTerm) {
       fetchData(searchFetchUrl); // Fetch with search term
     } else {
